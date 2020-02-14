@@ -52,7 +52,9 @@ public class WLibGuiWidget extends spinnery.widget.WWidget {
 		int my = (int) (mouseY - getY());
         // note: not using hit because the screens use lastResponder
 		widget.onMouseUp(mx, my, mouseButton);
-		widget.onClick(mx, my, mouseButton);
+
+        WWidget child = widget.hit(mx, my);
+        child.onClick(mx - child.getAbsoluteX(), my - child.getAbsoluteY(), mouseButton);
 	}
 
 	@Override

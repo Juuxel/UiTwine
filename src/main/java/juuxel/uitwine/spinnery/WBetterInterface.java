@@ -4,11 +4,10 @@ import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
+import spinnery.client.BaseRenderer;
 import spinnery.common.BaseContainer;
-import spinnery.widget.WInterface;
-import spinnery.widget.WPosition;
-import spinnery.widget.WSize;
-import spinnery.widget.WWidget;
+import spinnery.registry.ThemeRegistry;
+import spinnery.widget.*;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -56,11 +55,32 @@ public class WBetterInterface extends WInterface {
 		}
 	}
 
-	@Override
+	// FIXME: Apparently this is fixed in the upcoming release
+    @Override
+    public WColor getColor(int number) {
+        return ThemeRegistry.get(getTheme(), WInterface.class).get(number);
+    }
+
+    @Override
 	public void draw() {
-		if (backgroundPainter != null) {
-			backgroundPainter.paintBackground(getX(), getY(), paintingDelegate);
-		}
+	    if (isHidden()) return;
+
+	    if (isDrawable()) {
+            if (backgroundPainter != null) {
+                backgroundPainter.paintBackground(getX(), getY(), paintingDelegate);
+            }
+
+            int x = getX();
+            int y = getY();
+            int z = getZ();
+            int w = getWidth();
+
+            if (hasLabel()) {
+                BaseRenderer.drawText(isLabelShadowed(), getLabel().asFormattedString(), x + w / 2 - BaseRenderer.getTextRenderer().getStringWidth(getLabel().asFormattedString()) / 2, y + 6, getColor(LABEL).RGB);
+                BaseRenderer.drawRectangle(x, y + 16, z, w, 1, getColor(OUTLINE));
+                BaseRenderer.drawRectangle(x + 1, y + 17, z, w - 2, 0.75, getColor(SHADOW));
+            }
+        }
 
 		for (WWidget widget : getWidgets()) {
 			widget.draw();

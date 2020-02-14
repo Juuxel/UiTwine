@@ -32,7 +32,7 @@ public class TestMod {
         );
 
         CommandRegistry.INSTANCE.register(false, dispatcher -> {
-            LiteralArgumentBuilder<ServerCommandSource> root = CommandManager.literal("uitwist");
+            LiteralArgumentBuilder<ServerCommandSource> root = CommandManager.literal("uitwine");
             LiteralArgumentBuilder<ServerCommandSource> libgui =
                 CommandManager.literal("libgui").executes(context -> {
                     ContainerProviderRegistry.INSTANCE.openContainer(

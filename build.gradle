@@ -38,6 +38,8 @@ dependencies {
     modApi "io.github.cottonmc:LibGui:$project.libgui_version"
     modApi "com.github.vini2003:Spinnery:$project.spinnery_version"
 
+    modRuntime "io.github.prospector:modmenu:1.10.1+build.30"
+
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
 
