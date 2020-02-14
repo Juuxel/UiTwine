@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "uitwine",
+  "version": "${version}",
+
+  "name": "UI Twine",
+  "description": "Allows combining LibGui with other GUI libraries.",
+  "authors": [
+    "Juuz"
+  ],
+  "contact": {
+    "homepage": "https://github.com/CottonMC/UiTwine",
+    "sources": "https://github.com/CottonMC/UiTwine",
+    "issues": "https://github.com/CottonMC/UiTwine/issues"
+  },
+
+  "license": "MIT",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": ["juuxel.uitwine.test.TestMod::init"],
+    "client": ["juuxel.uitwine.test.TestMod::clientInit"]
+  },
+
+  "depends": {
+    "fabricloader": ">=0.7.2",
+    "fabric": "*",
+    "minecraft": "1.15.x",
+    "libgui": "^1.5.1",
+    "spinnery": "=1.15.2-1.0.0"
+  }
+}
